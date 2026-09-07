@@ -51,5 +51,7 @@ if __name__ == "__main__":
     if fresh:
         print("Database initialized with seed sensors, demo user, and 24h of history.")
         print("Demo login -> email: demo@landsafe.ner | password: Demo@123")
-    print("LANDSAFE NER backend running on http://localhost:5000")
-    app.run(debug=True, port=5000)
+
+    port = int(os.environ.get("PORT", 5000))
+    print(f"LANDSAFE NER backend running on port {port}")
+    app.run(host="0.0.0.0", port=port)
