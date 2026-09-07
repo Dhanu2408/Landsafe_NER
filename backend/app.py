@@ -21,7 +21,11 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY", "landsafe-ner-dev-secret")
 
 CORS_ORIGIN = os.environ.get("CORS_ORIGIN", "http://localhost:5173")
-CORS(app, resources={r"/api/*": {"origins": CORS_ORIGIN}}, supports_credentials=True)
+CORS(
+    app,
+    resources={r"/api/*": {"origins": [CORS_ORIGIN]}},
+    supports_credentials=True
+)
 
 app.register_blueprint(auth_bp, url_prefix="/api")
 app.register_blueprint(sensors_bp, url_prefix="/api")
